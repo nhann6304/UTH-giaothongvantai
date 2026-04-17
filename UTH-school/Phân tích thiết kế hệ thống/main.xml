@@ -1,48 +1,43 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="ERD_Chuan_DoanhNghiep">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-        
-        <mxCell id="e_nv" value="NHÂN VIÊN" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="80" y="240" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="a_mnv" value="&lt;u&gt;Mã NV&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="160" width="80" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="l1" style="endArrow=none;html=1;exitX=0.5;exitY=1;entryX=0.25;entryY=0;" edge="1" parent="1" source="a_mnv" target="e_nv"> <mxGeometry relative="1" as="geometry" /> </mxCell>
+graph TB
+    %% Tác nhân
+    KH[Khách hàng]
+    NV[Nhân viên]
+    QL[Quản lý chi nhánh]
 
-        <mxCell id="r_lap" value="LẬP" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="320" y="230" width="80" height="80" as="geometry" />
-        </mxCell>
+    %% Tiến trình
+    P1((1.0 Quản lý <br/> Sản phẩm))
+    P2((2.0 Quản lý <br/> Bán hàng))
+    P3((3.0 Quản lý <br/> Kho))
+    P4((4.0 Quản lý <br/> Nhân sự))
 
-        <mxCell id="e_dh" value="ĐƠN HÀNG" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="520" y="240" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="a_mdh" value="&lt;u&gt;Mã ĐH&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="160" width="80" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="l2" style="endArrow=none;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="a_mdh" target="e_dh"> <mxGeometry relative="1" as="geometry" /> </mxCell>
+    %% Kho dữ liệu
+    D1[(D1: Sản phẩm)]
+    D2[(D2: Hóa đơn)]
+    D3[(D3: Tồn kho)]
+    D4[(D4: Nhân viên)]
 
-        <mxCell id="l3" value="1" style="endArrow=none;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="e_nv" target="r_lap"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="l4" value="n" style="endArrow=none;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="r_lap" target="e_dh"> <mxGeometry relative="1" as="geometry" /> </mxCell>
+    %% Luồng dữ liệu cho P1
+    QL -->|Thông tin SP, Danh mục| P1
+    P1 -->|Lưu thông tin| D1
 
-        <mxCell id="e_kh" value="KHÁCH HÀNG" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="520" y="440" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="r_dat" value="ĐẶT" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
-          <mxGeometry x="540" y="330" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="l5" value="n" style="endArrow=none;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="e_dh" target="r_dat"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="l6" value="1" style="endArrow=none;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="r_dat" target="e_kh"> <mxGeometry relative="1" as="geometry" /> </mxCell>
+    %% Luồng dữ liệu cho P2
+    KH -->|Yêu cầu mua| P2
+    NV -->|Lập hóa đơn| P2
+    P2 -->|Tra cứu đơn giá| D1
+    P2 -->|Lưu hóa đơn| D2
+    P2 -->|Gửi hóa đơn| KH
+    P2 -->|Gửi lệnh trừ kho| P3
 
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+    %% Luồng dữ liệu cho P3
+    QL -->|Thông tin nhập kho| P3
+    P3 -->|Cập nhật số lượng| D3
 
-channel ai manager 
-account ai history run  ->> xóa 
-account ai content -> account AI content run 
-idea niche trong channel
+    %% Luồng dữ liệu cho P4
+    QL -->|Thông tin nhân sự| P4
+    P4 -->|Lưu hồ sơ| D4
+
+    %% Định dạng
+    style D1 fill:#e1f5fe,stroke:#01579b
+    style D2 fill:#e1f5fe,stroke:#01579b
+    style D3 fill:#e1f5fe,stroke:#01579b
+    style D4 fill:#e1f5fe,stroke:#01579b
