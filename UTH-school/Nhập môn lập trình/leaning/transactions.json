@@ -1,0 +1,130 @@
+[
+  {
+    "id": 1,
+    "loai": "thu",
+    "danh_muc": "Lương",
+    "so_tien": 15000000,
+    "ngay": "2026-03-05",
+    "ghi_chu": "Lương tháng 3"
+  },
+  {
+    "id": 2,
+    "loai": "chi",
+    "danh_muc": "Ăn uống",
+    "so_tien": 2500000,
+    "ngay": "2026-03-10",
+    "ghi_chu": "Cơm hằng ngày"
+  },
+  {
+    "id": 3,
+    "loai": "chi",
+    "danh_muc": "Hóa đơn",
+    "so_tien": 1200000,
+    "ngay": "2026-03-12",
+    "ghi_chu": "Tiền điện nước"
+  },
+  {
+    "id": 4,
+    "loai": "chi",
+    "danh_muc": "Giải trí",
+    "so_tien": 800000,
+    "ngay": "2026-03-20",
+    "ghi_chu": "Xem phim cuối tuần"
+  },
+  {
+    "id": 5,
+    "loai": "chi",
+    "danh_muc": "Đi lại",
+    "so_tien": 600000,
+    "ngay": "2026-03-25",
+    "ghi_chu": "Xăng xe"
+  },
+  {
+    "id": 6,
+    "loai": "thu",
+    "danh_muc": "Lương",
+    "so_tien": 15000000,
+    "ngay": "2026-04-05",
+    "ghi_chu": "Lương tháng 4"
+  },
+  {
+    "id": 7,
+    "loai": "thu",
+    "danh_muc": "Thưởng",
+    "so_tien": 2000000,
+    "ngay": "2026-04-15",
+    "ghi_chu": "Thưởng dự án"
+  },
+  {
+    "id": 8,
+    "loai": "chi",
+    "danh_muc": "Ăn uống",
+    "so_tien": 3000000,
+    "ngay": "2026-04-08",
+    "ghi_chu": "Đi ăn nhà hàng"
+  },
+  {
+    "id": 9,
+    "loai": "chi",
+    "danh_muc": "Học tập",
+    "so_tien": 1500000,
+    "ngay": "2026-04-10",
+    "ghi_chu": "Mua sách + khóa học"
+  },
+  {
+    "id": 10,
+    "loai": "chi",
+    "danh_muc": "Mua sắm",
+    "so_tien": 2200000,
+    "ngay": "2026-04-18",
+    "ghi_chu": "Quần áo mùa hè"
+  },
+  {
+    "id": 11,
+    "loai": "chi",
+    "danh_muc": "Giải trí",
+    "so_tien": 700000,
+    "ngay": "2026-04-22",
+    "ghi_chu": "Cafe bạn bè"
+  },
+  {
+    "id": 12,
+    "loai": "chi",
+    "danh_muc": "Hóa đơn",
+    "so_tien": 1100000,
+    "ngay": "2026-04-28",
+    "ghi_chu": "Internet + điện"
+  },
+  {
+    "id": 13,
+    "loai": "thu",
+    "danh_muc": "Lương",
+    "so_tien": 15000000,
+    "ngay": "2026-05-04",
+    "ghi_chu": "Lương tháng 5"
+  },
+  {
+    "id": 14,
+    "loai": "chi",
+    "danh_muc": "Ăn uống",
+    "so_tien": 1800000,
+    "ngay": "2026-05-04",
+    "ghi_chu": "Đi chợ + ăn vặt"
+  },
+  {
+    "id": 15,
+    "loai": "chi",
+    "danh_muc": "Đi lại",
+    "so_tien": 450000,
+    "ngay": "2026-05-04",
+    "ghi_chu": "Grab + xăng"
+  },
+  {
+    "id": 16,
+    "loai": "chi",
+    "danh_muc": "Y tế",
+    "so_tien": 300000,
+    "ngay": "2026-05-04",
+    "ghi_chu": "Khám sức khỏe"
+  }
+]
