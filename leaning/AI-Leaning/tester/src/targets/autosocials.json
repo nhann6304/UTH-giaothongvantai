@@ -1,0 +1,307 @@
+{
+  "name": "AutoSocialsWebServer (local)",
+  "baseUrl": "http://localhost:9000",
+  "frontendUrl": "http://localhost:3000",
+  "auth": {
+    "type": "cookie-jwt",
+    "loginPath": "/api/v1/auth/login",
+    "credentialsField": {
+      "email": "user_email",
+      "password": "user_password"
+    },
+    "cookieName": "token"
+  },
+  "responseShape": {
+    "metadataPath": "metadata",
+    "itemsPath": "metadata.items",
+    "totalPath": "metadata.totalItems"
+  },
+  "modules": {
+    "users": {
+      "label": "Permission > Users",
+      "basePath": "/api/v1/users",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "position", "type": "MULTI", "source": "enum", "enum": "EPositionUser" },
+        { "field": "status", "type": "MULTI", "source": "enum", "enum": "EStatusUser" },
+        { "field": "gender", "type": "MULTI", "source": "enum", "enum": "EGender" },
+        { "field": "hasPermission", "type": "MULTI", "source": "enum", "enum": "EHaveData", "values": ["YES", "NO"] },
+        { "field": "larks", "type": "MULTI", "source": "api", "optionKey": "larks" },
+        { "field": "roles", "type": "MULTI", "source": "api", "optionKey": "roles" },
+        { "field": "departmentOfUser", "type": "MULTI", "source": "api", "optionKey": "departmentOfUser" },
+        { "field": "teamOfUser", "type": "MULTI", "source": "api", "optionKey": "teamOfUser" },
+        { "field": "leaderOfUser", "type": "MULTI", "source": "api", "optionKey": "leaderOfUser" },
+        { "field": "users", "type": "MULTI", "source": "api", "optionKey": "users" },
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "position": "position",
+          "status": "status",
+          "gender": "gender",
+          "hasPermission": "hasPermission",
+          "larks": "larks[].id",
+          "roles": "roles[].id",
+          "departmentOfUser": "departments[].id",
+          "teamOfUser": "teams[].id",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "departments": {
+      "label": "Permission > Departments",
+      "basePath": "/api/v1/departments",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "departmentName", "type": "MULTI", "source": "api", "optionKey": "departmentName" },
+        { "field": "departmentTeam", "type": "MULTI", "source": "api", "optionKey": "departmentTeam" },
+        { "field": "departmentLeaders", "type": "MULTI", "source": "api", "optionKey": "departmentLeaders" },
+        { "field": "departmentMembers", "type": "MULTI", "source": "api", "optionKey": "departmentMembers" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" },
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "departmentName": "id",
+          "departmentTeam": "teams[].id",
+          "departmentLeaders": "leaders[].id",
+          "departmentMembers": "members[].id",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "roles": {
+      "label": "Permission > Roles",
+      "basePath": "/api/v1/roles",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "name", "type": "MULTI", "source": "api", "optionKey": "name" },
+        { "field": "departments", "type": "MULTI", "source": "api", "optionKey": "departments" },
+        { "field": "teams", "type": "MULTI", "source": "api", "optionKey": "teams" },
+        { "field": "users", "type": "MULTI", "source": "api", "optionKey": "users" },
+        { "field": "status", "type": "MULTI", "source": "enum", "enum": "EStatusRole" },
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "name": "id",
+          "departments": "departments[].id",
+          "teams": "teams[].id",
+          "users": "users[].id",
+          "status": "status",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "proxy": {
+      "label": "Tools > Account Proxy",
+      "basePath": "/api/v1/account-proxy",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" },
+        { "field": "departmentAssign", "type": "MULTI", "source": "api", "optionKey": "departmentAssign" },
+        { "field": "teamAssign", "type": "MULTI", "source": "api", "optionKey": "teamAssign" },
+        { "field": "leaderAssign", "type": "MULTI", "source": "api", "optionKey": "leaderAssign" },
+        { "field": "userAssign", "type": "MULTI", "source": "api", "optionKey": "userAssign" },
+        { "field": "pcName", "type": "MULTI", "source": "api", "optionKey": "pcName" },
+        { "field": "devicesName", "type": "MULTI", "source": "api", "optionKey": "devicesName" },
+        { "field": "devicesOS", "type": "MULTI", "source": "enum", "enum": "ETypeDeviceOS" },
+        { "field": "country", "type": "MULTI", "source": "api", "optionKey": "country" },
+        { "field": "type", "type": "MULTI", "source": "enum", "enum": "ETypeProxy" },
+        { "field": "provider", "type": "MULTI", "source": "api", "optionKey": "provider" },
+        { "field": "typeNewIp", "type": "MULTI", "source": "enum", "enum": "EStatusProxyNewIP" },
+        { "field": "statusChecked", "type": "MULTI", "source": "enum", "enum": "EStatusProxyChecked" },
+        { "field": "startDate", "type": "DATE_RANGE" },
+        { "field": "endDate", "type": "DATE_RANGE" },
+        { "field": "timeUserAssign", "type": "DATE_RANGE" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "country": "country",
+          "type": "type",
+          "provider": "provider",
+          "typeNewIp": "typeNewIp",
+          "statusChecked": "statusChecked",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "accountVpn": {
+      "label": "Tools > Account VPN",
+      "basePath": "/api/v1/account-vpn",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "departmentAssign", "type": "MULTI", "source": "api", "optionKey": "departmentAssign" },
+        { "field": "teamAssign", "type": "MULTI", "source": "api", "optionKey": "teamAssign" },
+        { "field": "leaderAssign", "type": "MULTI", "source": "api", "optionKey": "leaderAssign" },
+        { "field": "userAssign", "type": "MULTI", "source": "api", "optionKey": "userAssign" },
+        { "field": "pcName", "type": "MULTI", "source": "api", "optionKey": "pcName" },
+        { "field": "devicesName", "type": "MULTI", "source": "api", "optionKey": "devicesName" },
+        { "field": "devicesOS", "type": "MULTI", "source": "enum", "enum": "ETypeDeviceOS" },
+        { "field": "provider", "type": "MULTI", "source": "enum", "enum": "ETypeProviderAccountVPN" },
+        { "field": "payment", "type": "MULTI", "source": "enum", "enum": "ETypePaymentAccountVPN" },
+        { "field": "status", "type": "MULTI", "source": "enum", "enum": "EStatusAccountVPN" },
+        { "field": "typeAccount", "type": "MULTI", "source": "enum", "enum": "ETypeAccountVPN" },
+        { "field": "country", "type": "MULTI", "source": "api", "optionKey": "country" },
+        { "field": "sheetName", "type": "MULTI", "source": "api", "optionKey": "sheetName" },
+        { "field": "timeUserAssign", "type": "DATE_RANGE" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "provider": "provider",
+          "payment": "payment",
+          "status": "status",
+          "typeAccount": "typeAccount",
+          "country": "country",
+          "createdBy": "createdBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "accountVps": {
+      "label": "Infrastructure > Account VPS",
+      "basePath": "/api/v1/account-vps",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "accountVPSGroup", "type": "MULTI", "source": "api", "optionKey": "accountVPSGroup" },
+        { "field": "listTypeSocial", "type": "MULTI", "source": "enum", "enum": "ETypeSocial" },
+        { "field": "provider", "type": "MULTI", "source": "api", "optionKey": "provider" },
+        { "field": "ram", "type": "MULTI", "source": "enum", "enum": "EVPSRam" },
+        { "field": "core", "type": "MULTI", "source": "enum", "enum": "EVPSCore" },
+        { "field": "status", "type": "MULTI", "source": "enum", "enum": "EVPSStatus" },
+        { "field": "statusRestart", "type": "MULTI", "source": "enum", "enum": "EVPSStatusRestart" },
+        { "field": "statusConnect", "type": "MULTI", "source": "enum", "enum": "EVPSStatusConnection" },
+        { "field": "statusReplace", "type": "MULTI", "source": "enum", "enum": "EVPSStatusReplace" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "listTypeSocial": "listTypeSocial[]",
+          "ram": "ram",
+          "core": "core",
+          "status": "status",
+          "statusRestart": "statusRestart",
+          "statusConnect": "statusConnect",
+          "statusReplace": "statusReplace",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    },
+    "teams": {
+      "label": "Permission > Teams",
+      "basePath": "/api/v1/teams",
+      "endpoints": {
+        "findMulti": "/find-multi",
+        "findOverview": "/find-overview",
+        "findFilterOptions": "/find-filter-options"
+      },
+      "filterFields": [
+        { "field": "teamName", "type": "MULTI", "source": "api", "optionKey": "teamName" },
+        { "field": "departmentName", "type": "MULTI", "source": "api", "optionKey": "departmentName" },
+        { "field": "leaderName", "type": "MULTI", "source": "api", "optionKey": "leaderName" },
+        { "field": "memberName", "type": "MULTI", "source": "api", "optionKey": "memberName" },
+        { "field": "larks", "type": "MULTI", "source": "api", "optionKey": "larks" },
+        { "field": "roles", "type": "MULTI", "source": "api", "optionKey": "roles" },
+        { "field": "typeSocials", "type": "MULTI", "source": "enum", "enum": "ETypeSocial" },
+        { "field": "status", "type": "MULTI", "source": "enum", "enum": "EStatusTeam" },
+        { "field": "departmentCreator", "type": "MULTI", "source": "api", "optionKey": "departmentCreator" },
+        { "field": "teamCreator", "type": "MULTI", "source": "api", "optionKey": "teamCreator" },
+        { "field": "leaderCreator", "type": "MULTI", "source": "api", "optionKey": "leaderCreator" },
+        { "field": "createdBy", "type": "MULTI", "source": "api", "optionKey": "createdBy" },
+        { "field": "updatedBy", "type": "MULTI", "source": "api", "optionKey": "updatedBy" },
+        { "field": "createdAt", "type": "DATE_RANGE" },
+        { "field": "updatedAt", "type": "DATE_RANGE" }
+      ],
+      "verifyRules": {
+        "rowFieldMapping": {
+          "teamName": "id",
+          "departmentName": "department.id",
+          "leaderName": "leaders[].id",
+          "memberName": "members[].id",
+          "larks": "larks[].id",
+          "roles": "roles[].id",
+          "typeSocials": "typeSocials",
+          "status": "status",
+          "createdBy": "createdBy.id",
+          "updatedBy": "updatedBy.id",
+          "createdAt": "createdAt",
+          "updatedAt": "updatedAt"
+        }
+      }
+    }
+  }
+}
